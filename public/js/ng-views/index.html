@@ -1,0 +1,7 @@
+<h1>All {{vm.books.length}} Books</h1>
+<div data-ng-repeat="book in vm.books">
+  <p>{{book.title}}</p>
+  <p>{{book.author}}</p>
+  <p>{{book.summary}}</p>
+  <img data-ng-src="{{book.image_url}}"/>
+</div>

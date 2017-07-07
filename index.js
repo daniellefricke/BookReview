@@ -15,9 +15,13 @@ app.set("view engine", "hbs");
 app.use("/assets", express.static("public"));
 app.use(parser.json({extended: true}));
 
-app.get("/", function(req,res){
-  res.send("Hello World!")
-})
+
+
+app.get("/api/books", function(req, res) {
+  Book.find({}).then((books)=>{
+    res.json(books)
+  })
+});
 
 
 
@@ -27,8 +31,9 @@ app.get("/", function(req,res){
 
 
 
-
-
+app.get("/*", function(req, res){
+    res.sendFile(__dirname + "/public/js/app-root.html");
+});
 
 app.listen(app.get('port'), ()=>{
   console.log("listening")
