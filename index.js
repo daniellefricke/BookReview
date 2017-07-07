@@ -35,7 +35,7 @@ app.post("/api/books", function(req, res){
   });
 });
 
-app.delete("/api/books/:title/delete", function(req, res){
+app.delete("/api/books/:title", function(req, res){
   Book.findOneAndRemove({title: req.params.title}).then(function(){
     res.json({success: true})
   });

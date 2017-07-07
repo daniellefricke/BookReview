@@ -30,10 +30,15 @@ function BookFactory($resource) {
 }
 
 function ShowControllerFunc($stateParams, Book, $state) {
-  this.book = Book.get({title: $stateParams.title}, res=>console.log(res))
+  this.book = Book.get({title: $stateParams.title})
   this.update = function() {
     this.book.$update({title: $stateParams.title}).then((book)=>{
-      $state.go("show", {title: book.title})
+      $state.go("index")
+    })
+  }
+  this.destroy = function () {
+    this.book.$delete({title: $stateParams.title}).then(function(){
+      $state.go("index")
     })
   }
 }
@@ -46,6 +51,7 @@ function IndexControllerFunc(Book, $state) {
     this.newBook.$save().then((book)=>{
       $state.go("show", {title: book.title})
     })
+
   }
 }
 

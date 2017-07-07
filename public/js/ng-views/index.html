@@ -1,4 +1,14 @@
 <h1>All {{vm.books.length}} Books</h1>
+
+<h2>Add new book:</h2>
+<form ng-submit="vm.create()">
+  <input type="text" ng-model="vm.newBook.title" placeholder="title" />
+  <input type="text" ng-model="vm.newBook.author" placeholder="author" />
+  <input type="text" ng-model="vm.newBook.summary" placeholder="summary" />
+  <input type="text" ng-model="vm.newBook.image_url" placeholder="image" />
+  <button type="submit">Add Book</button>
+</form>
+
 <div data-ng-repeat="book in vm.books">
   <p><a data-ui-sref="show({title: book.title})">{{book.title}}</a></p>
   <img data-ng-src="{{book.image_url}}"/>
