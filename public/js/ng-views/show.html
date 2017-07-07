@@ -1,0 +1,11 @@
+<h1>{{vm.book.title}}</h1>
+<ul>
+  <li>Author: {{vm.book.author}}</li>
+  <li>Summary: {{vm.book.summary}}</li>
+</ul>
+<img src="{{vm.book.image_url}}"/>
+
+<h1>Reviews:</h1>
+<div data-ng-repeat="review in vm.book.reviews">
+<p>"{{review.body}}"</p>
+</div>

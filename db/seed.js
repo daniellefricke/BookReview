@@ -3,8 +3,13 @@ var mongoose = require("./connection");
 var Book = mongoose.model("Book");
 var Review = mongoose.model("Review");
 
-Book.remove({});
-Review.remove({});
+Book.remove({}, function(err){
+  console.log(err)
+});
+
+Review.remove({}, function(err){
+  console.log(err)
+});
 
 var review1 = new Review({body: "lorem ipsum"})
 var review2 = new Review({body: "ipsum lorem"})

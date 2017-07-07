@@ -16,12 +16,12 @@ angular
   "$state",
   IndexControllerFunc
 ])
-// .controller("ShowController", [
-//   "$stateParams",
-//   "Book",
-//   "$state",
-//   ShowControllerFunc
-// ])
+.controller("ShowController", [
+  "$stateParams",
+  "Book",
+  "$state",
+  ShowControllerFunc
+])
 
 function BookFactory($resource) {
   return $resource("/api/books/:title", {}, {
@@ -29,14 +29,14 @@ function BookFactory($resource) {
   })
 }
 
-// function ShowControllerFunc($stateParams, Book, $state) {
-//   this.book = Book.get({name: $stateParams.title})
-//   this.update = function() {
-//     this.book.$update({title: $stateParams.title}).then((book)=>{
-//       $state.go("show", {title: book.title})
-//     })
-//   }
-// }
+function ShowControllerFunc($stateParams, Book, $state) {
+  this.book = Book.get({title: $stateParams.title}, res=>console.log(res))
+  this.update = function() {
+    this.book.$update({title: $stateParams.title}).then((book)=>{
+      $state.go("show", {title: book.title})
+    })
+  }
+}
 
 function IndexControllerFunc(Book, $state) {
   this.books = Book.query()
