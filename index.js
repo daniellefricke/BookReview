@@ -23,10 +23,29 @@ app.get("/api/books", function(req, res) {
   })
 });
 
+app.get("/api/books/:title", function(req, res){
+  Book.findOne({title: req.params.title}).then(function(book){
+    res.json(book)
+  });
+});
 
+app.post("/api/books", function(req, res){
+  Book.create(req.body).then(function(book){
+    res.json(book)
+  });
+});
 
+app.delete("/api/books/:title/delete", function(req, res){
+  Book.findOneAndRemove({title: req.params.title}).then(function(){
+    res.json({success: true})
+  });
+});
 
-
+app.put("/api/books/:title", function(req, res){
+  Book.findOneAndUpdate({title: req.params.title}, req.body, {new: true}).then(function(book){
+    res.json(book)
+  });
+});
 
 
 
